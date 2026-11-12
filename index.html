@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f8fb"><meta name="description" content="AL FAIZ FITNESS — beginner-friendly exercise library and workout tracker.">
+<title>AL FAIZ FITNESS</title>
+<style>
+:root{--red:#df2935;--ink:#191b22;--muted:#777d88;--line:#e8eaf0;--bg:#f6f7fa;--card:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:82px}
+.top{position:sticky;top:0;z-index:3;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:15px 17px}
+.brand{display:flex;align-items:center;gap:11px}.logo{background:var(--red);color:#fff;border-radius:13px;width:42px;height:42px;display:grid;place-items:center;font-weight:900;font-size:20px}
+.brand b{font-size:17px;letter-spacing:.4px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1px}
+.content{padding:16px}.hero{background:linear-gradient(115deg,#fff 55%,#fff0f0);border:1px solid #f0dfe0;border-radius:20px;padding:20px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:130px;height:130px;border:20px solid #f9d5d6;border-radius:50%;right:-45px;top:18px}
+.eyebrow{color:var(--red);font-weight:800;font-size:11px;letter-spacing:1.3px}.hero h1{font-size:27px;line-height:1.1;margin:8px 0;max-width:280px}
+.hero p{color:var(--muted);max-width:280px;margin:0 0 14px}.primary{background:var(--red);color:#fff;border:0;border-radius:11px;padding:11px 15px;font-weight:750}
+.secondary{background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px 13px;font-weight:650}
+.heading{display:flex;justify-content:space-between;align-items:end;margin:23px 2px 11px}.heading h2{font-size:17px;margin:0}.heading small{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.category{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px 5px;text-align:center;min-height:112px;color:var(--ink)}
+.category .art{font-size:36px;height:58px;display:grid;place-items:center}.category b{font-size:12px}.category small{display:block;color:var(--muted);font-size:10px}
+.searchrow{display:flex;gap:8px;margin:14px 0}.searchrow input{flex:1;min-width:0}.input{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px;width:100%}
+.list{display:grid;gap:9px}.item{display:flex;align-items:center;gap:11px;padding:11px;background:#fff;border:1px solid var(--line);border-radius:14px;text-align:left;width:100%;color:var(--ink)}
+.thumb{width:66px;height:62px;display:grid;place-items:center;background:#f4f5f7;border-radius:10px;font-size:27px;flex-shrink:0}
+.item b{display:block;font-size:13px}.item small{display:block;color:var(--muted);font-size:11px;margin-top:4px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px;margin:10px 0}.panel h3{font-size:15px;margin:0 0 9px}
+.muted{color:var(--muted)}.tabs{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(760px,100%);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 6px calc(8px + env(safe-area-inset-bottom));background:#ffffffed;backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:4}
+.tab{border:0;background:none;color:#777;font-size:11px;padding:4px}.tab span{display:block;font-size:19px}.tab.active{color:var(--red);font-weight:800}
+.modal{display:none;position:fixed;inset:0;background:#1118;z-index:8;align-items:end;justify-content:center}.modal.show{display:flex}
+.sheet{background:#fff;border-radius:20px 20px 0 0;padding:18px;width:min(760px,100%);max-height:88vh;overflow:auto}.sheet h2{font-size:20px;margin:4px 0 10px}.sheet h3{font-size:15px}
+.close{float:right;border:0;background:#f1f2f5;border-radius:50%;width:32px;height:32px;font-size:18px}.tag{display:inline-block;background:#f2f3f6;border-radius:6px;padding:3px 7px;font-size:10px;color:#555;margin:3px}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1;min-width:0}.empty{text-align:center;color:var(--muted);padding:22px;background:#fff;border:1px dashed var(--line);border-radius:13px}
+.timer{text-align:center;font-size:38px;font-weight:850;color:var(--red);padding:15px}.toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:9px 14px;border-radius:9px;opacity:0;z-index:10;transition:opacity .2s}.toast.show{opacity:1}
+@media(min-width:600px){.content{padding:22px}.category{min-height:130px}.category .art{height:70px;font-size:42px}}
+</style></head><body>
+<div class="app"><header class="top"><div class="brand"><div class="logo">AF</div><div><b>AL FAIZ FITNESS</b><small>TRAIN SMART • GET STRONGER</small></div></div></header>
+<main class="content" id="main"></main>
+<nav class="tabs"><button class="tab active" data-tab="home" onclick="page('home')"><span>⌂</span>Home</button><button class="tab" data-tab="library" onclick="page('library')"><span>♧</span>Exercises</button><button class="tab" data-tab="workouts" onclick="page('workouts')"><span>▣</span>Workouts</button><button class="tab" data-tab="progress" onclick="page('progress')"><span>▥</span>Progress</button></nav></div>
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="sheet" id="sheet"></div></div><div class="toast" id="toast"></div>
+<script>
+const cats=[['Chest','🏋️','Pushing muscles'],['Back','🧍','Pulling muscles'],['Shoulders','💪','Shoulder strength'],['Arms','🦾','Biceps & triceps'],['Abs / Core','🎯','Core stability'],['Legs','🦵','Quads & hamstrings'],['Glutes','🍑','Hip strength'],['Calves','🦶','Lower legs'],['Full Body','⚡','Whole-body training']];
+const exercises=[
+['Push-up','Chest','Bodyweight','Keep a straight line from head to heels. Lower your chest under control, then push the floor away. Easier: place your hands on a bench or wall.','3 × 8–12'],
+['Dumbbell Bench Press','Chest','Dumbbell','Lie on a flat bench with feet planted. Lower dumbbells beside your chest, then press up smoothly. Keep wrists stacked over elbows.','3 × 8–12'],
+['Machine Chest Press','Chest','Machine','Set handles around mid-chest. Keep your back against the pad, press forward, then return slowly without forcefully locking your elbows.','3 × 10–12'],
+['Lat Pulldown','Back','Cable','Sit with thighs secured. Pull the bar toward your upper chest with elbows down. Control the return; never pull behind your neck.','3 × 10–12'],
+['Seated Cable Row','Back','Cable','Sit tall with knees soft. Pull the handle toward your lower ribs, gently squeeze shoulder blades, then extend arms slowly. Avoid rocking.','3 × 10–12'],
+['Dumbbell Row','Back','Dumbbell','Brace one hand on a bench. Keep your back neutral and pull the dumbbell toward your hip. Lower slowly without twisting.','3 × 10 each'],
+['Seated Shoulder Press','Shoulders','Machine','Adjust handles near shoulder height. Brace your core and press overhead smoothly. Lower until elbows are just below shoulder level if comfortable.','3 × 8–12'],
+['Dumbbell Lateral Raise','Shoulders','Dumbbell','Stand tall with soft elbows. Raise weights out to the sides to about shoulder height, then lower slowly. Avoid swinging.','3 × 12–15'],
+['Face Pull','Shoulders','Cable','Set rope around face height. Pull toward forehead with elbows out and finish with hands beside ears. Keep shoulders down.','3 × 12–15'],
+['Dumbbell Biceps Curl','Arms','Dumbbell','Keep elbows close to your sides. Curl without swinging your torso, then lower fully under control.','3 × 10–12'],
+['Triceps Rope Pushdown','Arms','Cable','Pin elbows near your ribs. Push rope down and slightly apart, then return slowly without letting elbows drift.','3 × 10–12'],
+['Plank','Abs / Core','Bodyweight','Rest on forearms and toes. Keep ribs down, squeeze glutes and maintain a straight line. Breathe; stop before your lower back sags.','3 × 20–40 sec'],
+['Dead Bug','Abs / Core','Bodyweight','Lie on your back with arms up and knees bent. Slowly extend opposite arm and leg while keeping your lower back gently against the floor. Alternate.','3 × 8 each'],
+['Goblet Squat','Legs','Dumbbell','Hold one dumbbell at your chest. Sit hips down between knees while keeping heels planted and chest lifted. Stand by pushing through your whole foot.','3 × 10–12'],
+['Leg Press','Legs','Machine','Place feet shoulder-width on platform. Lower until knees bend comfortably without pelvis curling, then press without locking knees.','3 × 10–12'],
+['Romanian Deadlift','Legs','Dumbbell','Hold weights in front of thighs. Push hips back with a slight knee bend, keep back neutral, lower to a hamstring stretch, then stand tall.','3 × 8–10'],
+['Glute Bridge','Glutes','Bodyweight','Lie on your back, knees bent. Brace core and squeeze glutes to lift hips; avoid arching your lower back. Lower slowly.','3 × 12–15'],
+['Standing Calf Raise','Calves','Machine / bodyweight','Rise onto the balls of your feet, pause briefly, then lower heels slowly for a full stretch. Hold support for balance.','3 × 12–15'],
+['Bodyweight Reverse Lunge','Full Body','Bodyweight','Step one foot back and lower both knees under control. Keep front heel down and torso steady. Push through the front foot to return.','3 × 8 each']
+];
+let current='home',chosen='Chest',query='',favs=JSON.parse(localStorage.afFavs||'[]'),plans=JSON.parse(localStorage.afPlans||'[]'),logs=JSON.parse(localStorage.afLogs||'[]'),measure=JSON.parse(localStorage.afMeasure||'[]'),timer=null,seconds=90;
+const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function save(){localStorage.afFavs=JSON.stringify(favs);localStorage.afPlans=JSON.stringify(plans);localStorage.afLogs=JSON.stringify(logs);localStorage.afMeasure=JSON.stringify(measure)}
+function toast(s){$('toast').textContent=s;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1700)}
+function page(p){current=p;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===p));render()}
+function render(){if(current==='home')home();if(current==='library')library();if(current==='workouts')workouts();if(current==='progress')progress()}
+function home(){$('main').innerHTML=`<section class="hero"><div class="eyebrow">YOUR TRAINING STARTS HERE</div><h1>Build strength. Move better.</h1><p>Explore exercises by muscle group and learn the basics with clear instructions.</p><button class="primary" onclick="page('library')">Explore exercises →</button></section><div class="heading"><h2>Muscle groups</h2><small>Choose a category</small></div><div class="grid">${cats.map(c=>`<button class="category" onclick="chosen='${c[0]}';page('library')"><div class="art">${c[1]}</div><b>${c[0]}</b><small>${c[2]}</small></button>`).join('')}</div><div class="heading"><h2>Quick tools</h2></div><div class="row"><button class="secondary" onclick="openTimer()">⏱ Rest timer</button><button class="secondary" onclick="page('workouts')">＋ My workouts</button></div>`}
+function card(e){return `<button class="item" onclick="detail('${esc(e[0])}')"><div class="thumb">🏋️</div><div style="flex:1"><b>${e[0]}</b><small>${e[2]} · ${e[4]}</small></div><span>›</span></button>`}
+function library(){$('main').innerHTML=`<div class="heading" style="margin-top:3px"><h2>Exercise library</h2><small>${exercises.length} exercises</small></div><div class="searchrow"><input class="input" id="q" placeholder="Search exercises..." value="${esc(query)}" oninput="query=this.value;drawList()"></div><div class="searchrow"><select class="input" id="cat" onchange="chosen=this.value;drawList()"><option value="All">All muscle groups</option>${cats.map(c=>`<option value="${c[0]}" ${chosen===c[0]?'selected':''}>${c[0]}</option>`).join('')}</select><button class="secondary" onclick="showFavs()">★ Favourites</button></div><div class="list" id="results"></div>`;drawList()}
+function drawList(){let el=$('results');if(!el)return;let a=exercises.filter(e=>(chosen==='All'||e[1]===chosen)&&e[0].toLowerCase().includes(query.toLowerCase()));el.innerHTML=a.length?a.map(card).join(''):'<div class="empty">No exercises match this search.</div>'}
+function detail(name){let e=exercises.find(x=>x[0]===name);if(!e)return;$('sheet').innerHTML=`<button class="close" onclick="closeModal()">×</button><div class="eyebrow">${e[1]} · ${e[2]}</div><h2>${e[0]}</h2><div class="tag">Beginner friendly</div><div class="tag">${e[4]}</div><h3>How to perform</h3><p>${e[3]}</p><h3>Training guide</h3><ul><li>Start with a light, manageable resistance.</li><li>Use a controlled range of motion; do not rush repetitions.</li><li>Rest 60–120 seconds between sets as needed.</li><li>Stop if you feel sharp pain, dizziness or unusual symptoms.</li></ul><button class="primary" onclick="addExercise('${esc(e[0])}')">＋ Add to workout</button> <button class="secondary" onclick="toggleFav('${esc(e[0])}')">${favs.includes(e[0])?'★ Saved':'☆ Save favourite'}</button>`;$('modal').classList.add('show')}
+function closeModal(){$('modal').classList.remove('show')}
+function toggleFav(n){favs=favs.includes(n)?favs.filter(x=>x!==n):[...favs,n];save();toast('Favourites updated');detail(n)}
+function showFavs(){chosen='All';query='';$('q').value='';$('results').innerHTML=favs.length?favs.map(n=>exercises.find(e=>e[0]===n)).filter(Boolean).map(card).join(''):'<div class="empty">No favourites saved yet.</div>'}
+function addExercise(n){let p=plans.find(x=>x.name==='My Workout');if(!p){p={name:'My Workout',items:[]};plans.push(p)}if(!p.items.includes(n))p.items.push(n);save();closeModal();toast('Added to My Workout')}
+function workouts(){$('main').innerHTML=`<div class="heading" style="margin-top:3px"><h2>My workouts</h2></div><div class="panel"><h3>Create a workout</h3><div class="row"><input class="input" id="newPlan" placeholder="e.g. Upper body day"><button class="primary" onclick="createPlan()">Create</button></div><p class="muted">Add exercises from the library using each exercise's detail page.</p></div>${plans.map((p,i)=>`<div class="panel"><div class="row"><h3>${esc(p.name)}</h3><button class="secondary" onclick="logWorkout(${i})">Log session</button></div>${p.items.map(n=>`<p class="muted">• ${esc(n)}</p>`).join('')||'<p class="muted">No exercises added yet.</p>'}</div>`).join('')||'<div class="empty">No workout plans yet.</div>'}<div class="panel"><h3>Rest timer</h3><button class="secondary" onclick="openTimer()">Open timer</button></div>`}
+function createPlan(){let n=$('newPlan').value.trim();if(!n)return toast('Enter a workout name');plans.push({name:n,items:[]});save();workouts();toast('Workout created')}
+function logWorkout(i){logs.unshift({name:plans[i].name,date:new Date().toISOString()});save();toast('Workout logged')}
+function progress(){$('main').innerHTML=`<div class="heading" style="margin-top:3px"><h2>Progress tracker</h2></div><div class="panel"><h3>Record measurements</h3><div class="row"><input class="input" id="weight" type="number" step=".1" placeholder="Weight kg"><input class="input" id="waist" type="number" step=".1" placeholder="Waist cm"></div><button class="primary" style="margin-top:10px" onclick="saveMeasure()">Save</button></div><div class="panel"><h3>Training history · ${logs.length} sessions</h3>${logs.slice(0,20).map(x=>`<p>${new Date(x.date).toLocaleDateString()} — <b>${esc(x.name)}</b></p>`).join('')||'<p class="muted">No sessions logged yet.</p>'}</div><div class="panel"><h3>Measurement history</h3>${measure.slice().reverse().map(x=>`<p>${new Date(x.date).toLocaleDateString()} — ${x.weight??'—'} kg · ${x.waist??'—'} cm</p>`).join('')||'<p class="muted">No measurements saved yet.</p>'}</div><div class="panel"><button class="secondary" onclick="backup()">Export backup (JSON)</button></div>`}
+function saveMeasure(){let w=$('weight').value,z=$('waist').value;if(!w&&!z)return toast('Enter a measurement');measure.push({date:new Date().toISOString(),weight:w?+w:null,waist:z?+z:null});save();progress();toast('Measurement saved')}
+function backup(){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([JSON.stringify({favs,plans,logs,measure},null,2)],{type:'application/json'}));a.href=u;a.download='al-faiz-fitness-backup.json';a.click();URL.revokeObjectURL(u)}
+function openTimer(){$('sheet').innerHTML=`<button class="close" onclick="closeModal()">×</button><h2>Rest timer</h2><div class="timer" id="clock">01:30</div><div class="row"><button class="secondary" onclick="setTimer(60)">60 sec</button><button class="secondary" onclick="setTimer(90)">90 sec</button><button class="secondary" onclick="setTimer(120)">2 min</button></div><div class="row" style="margin-top:12px"><button class="primary" onclick="startTimer()">Start</button><button class="secondary" onclick="pauseTimer()">Pause</button></div>`;$('modal').classList.add('show');setTimer(90)}
+function setTimer(n){clearInterval(timer);seconds=n;clock()}
+function clock(){let e=$('clock');if(e)e.textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0')}
+function startTimer(){clearInterval(timer);timer=setInterval(()=>{seconds--;clock();if(seconds<=0){clearInterval(timer);toast('Rest finished')}},1000)}
+function pauseTimer(){clearInterval(timer)}
+render();
+</script></body></html>
